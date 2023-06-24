@@ -28,6 +28,7 @@ public class DoctorServiceImpl implements DoctorService {
 	public List<Doctor> getAllDoctorst() {
 		System.out.println("Doctor Service Impl");
 		List<Doctor> dList = doctorRepository.findAll();
+		System.out.println("after repo called");
 		return dList;
 	}
 

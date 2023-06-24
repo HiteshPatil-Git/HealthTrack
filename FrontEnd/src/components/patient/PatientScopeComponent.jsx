@@ -22,7 +22,7 @@ class PatientScopeComponent extends Component {
           
             id:''
         }
-        this.donation=this.donation.bind(this);
+       
         this.bookEpass=this.bookEpass.bind(this);
         this.updateProfile=this.updateProfile.bind(this);
         this.logout=this.logout.bind(this);
@@ -38,20 +38,20 @@ class PatientScopeComponent extends Component {
       }
     bookEpass(passId){
         DoctorService.getAllDoctor().then(res=>{
+            console.log('button clicked');
+
            this.props.history.push(`/doctor-list`);
         })       
     }
 
     bookings(userId){
-        console.log('button clicked')
+        console.log('button clicked');
         EpassService.getPassByUserId(userId).then(res=>{
            this.props.history.push(`/all-bookings`);
         })       
     }
 
-    donation(){
-        this.props.history.push('/donation');
-    }
+    
   
 
     render() {

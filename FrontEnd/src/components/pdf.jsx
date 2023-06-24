@@ -44,7 +44,7 @@ class pdf extends Component {
           
           <div className="form-group" >
           <button onClick={handlePrint} class="btn" style={{ width: "50%" }}><i class="fa fa-download"></i> Download E-Appointment</button>
-          <a style={{ width: "50%" }} class="btn " href="/devotee-scope" role="button">Home</a>
+          <a button style={{ width: "50%" }} class="btn btn-primary " href="/patient-scope" role="button">Home</a>
                    
      </div>
 

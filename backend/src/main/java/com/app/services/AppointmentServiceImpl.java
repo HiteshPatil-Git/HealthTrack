@@ -56,8 +56,6 @@ public class AppointmentServiceImpl implements AppointmentService{
 			
 		}
 		
-				
-
 	}
 
 	@Override
@@ -90,7 +88,7 @@ public class AppointmentServiceImpl implements AppointmentService{
 		
 		String doctorName=passv.getDoctorName();
 		
-		
+		System.out.println(appId +" --> "+doctorName);
 		return appointmentRepository.findByAppIdAndDoctorName(appId, doctorName);
 	}
 

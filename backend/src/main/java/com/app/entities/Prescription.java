@@ -32,16 +32,16 @@ public class Prescription {
     private Long appId;
     
     @Column(length = 2000, nullable = true)
-    private String morningDose;
+    private String morning;
     
     @Column(length = 2000, nullable = true)
-    private String noonDose;
+    private String noon;
     
     @Column(length = 2000, nullable = true)
-    private String eveningDose;
+    private String evening;
     
     @Column(length = 2000, nullable = true)
-    private String nightDose;
+    private String night;
     
     @Column(length = 20,name = "pre_date")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")

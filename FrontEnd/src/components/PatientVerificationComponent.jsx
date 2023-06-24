@@ -31,7 +31,7 @@ class PatientVerificationComponent extends Component {
     super(props)
     this.state = {
       passv: [], 
-      passId: '',
+      appId: '',
       doctorName: response.doctorName,
       loading: false,
       message: ""
@@ -39,13 +39,13 @@ class PatientVerificationComponent extends Component {
     }
 
     this.handleVerifaction = this.handleVerifaction.bind(this);
-    this.onChangePassId = this.onChangePassId.bind(this);
+    this.onChangeAppId = this.onChangeAppId.bind(this);
     this.onChangeDoctorName = this.onChangeDoctorName.bind(this);
   }
 
-  onChangePassId(e) {
+  onChangeAppId(e) {
     this.setState({
-        passId: e.target.value
+      appId: e.target.value
     });
   }
 
@@ -66,7 +66,7 @@ class PatientVerificationComponent extends Component {
     this.form.validateAll();
 
     if (this.checkBtn.context._errors.length === 0) {
-      let passv = { passId: this.state.passId, doctorName: this.state.doctorName }
+      let passv = { appId: this.state.appId, doctorName: this.state.doctorName }
       console.log('passv =>' + JSON.stringify(passv));
       AppointmentService.getPassByPassId(passv).then(
         res => {
@@ -141,14 +141,14 @@ class PatientVerificationComponent extends Component {
                 >
                   <div className="form-group"
                   >
-                    <label htmlFor="passId" >Appointment ID</label>
+                    <label htmlFor="appId" >Appointment ID</label>
                     <Input
                       //className="form-control transparent-input"
                       type="text"
                       className="form-control"
-                      name="passId"
-                      value={this.state.passId}
-                      onChange={this.onChangePassId}
+                      name="appId"
+                      value={this.state.appId}
+                      onChange={this.onChangeAppId}
                       validations={[required]}
                     />
                   </div>
@@ -204,4 +204,3 @@ class PatientVerificationComponent extends Component {
 }
 
 export default PatientVerificationComponent;
-

@@ -9,6 +9,7 @@ import CreatePatientComponent from './components/profile/CreatePatientComponent'
 import CreateDoctorComponent from './components/profile/CreateDoctorComponent';
 import PatientScopeComponent from './components/patient/PatientScopeComponent';
 import DoctorScopeComponent from './components/Doctor/DoctorScopeComponent';
+import CreatePrescriptionComponent from './components/Doctor/CreatePrescriptionComponent';
 import UpdateComponent from './components/profile/UpdateComponent';
 
 
@@ -47,6 +48,7 @@ function App() {
               <Route path="/" exact component={LoginPageComponent}></Route>
               <Route path="/add-patient" component={CreatePatientComponent}></Route>
               <Route path="/add-doctor" component={CreateDoctorComponent}></Route>
+              <Route path="/add-prescription" component={CreatePrescriptionComponent}></Route>
               <Route path="/patient-scope" component={PatientScopeComponent}></Route>
               <Route path="/doctor-scope" component={DoctorScopeComponent}></Route>
               <Route path="/update" component={UpdateComponent}></Route>
@@ -67,7 +69,7 @@ function App() {
               <Route path="/show-pass" component={ShowPassComponent}></Route>
               <Route path="/pdf" component={pdf}></Route>
 
-
+              
               <Route path="/patient-verification" component={PatientVerificationComponent}></Route>
               <Route path="/epass" component={EpassComponent}></Route>
               <Route path="/aboutus" component={AboutComponent}></Route>

@@ -15,9 +15,10 @@ public class PrescriptionServiceImpl implements PrescriptionService {
 	private PrescriptionRepository prescriptionRepository;
 
 	@Override
-	public Prescription createPrescription(Prescription prescription) {
+	public Prescription createPrescription(Prescription pres) {
+		System.out.println("In Pres Service");
 		
-		return prescriptionRepository.save(prescription);
+		return prescriptionRepository.save(pres);
 	}
 
 	@Override
@@ -48,6 +49,28 @@ public class PrescriptionServiceImpl implements PrescriptionService {
 	public Prescription getPresByAppId(long appId) {
 		
 		return prescriptionRepository.findByAppId(appId);
+	}
+
+	@Override
+	public Prescription addTimeSlotDetails(Prescription presDetails, String morning, String noon, String evening,
+			String night, long appId, String excercisePlan, String dietPlan, String patientName, String doctorName) {
+
+		Prescription pr = new Prescription();
+		pr.setAppId(appId);
+		pr.setDietPlan(dietPlan);
+		pr.setExcercisePlan(excercisePlan);
+		pr.setMorning(morning);
+		pr.setNoon(noon);
+		pr.setEvening(evening);
+		pr.setNight(night);
+		pr.setDoctorName(doctorName);
+		pr.setPatientName(patientName);
+		pr.setPreDate(presDetails.getPreDate());
+		pr.setNextVisitDate(presDetails.getNextVisitDate());
+		
+		
+		
+		return prescriptionRepository.save(pr);
 	}
 
 }

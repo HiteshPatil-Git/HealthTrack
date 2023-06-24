@@ -6,7 +6,7 @@ import com.app.entities.Prescription;
 
 public interface PrescriptionService {
 
-	Prescription createPrescription(Prescription prescription);
+	Prescription createPrescription(Prescription pres);
 
 	Prescription getDetailsById(long presId);
 
@@ -17,5 +17,8 @@ public interface PrescriptionService {
 	List<Prescription> getAllPresByPatientName(String patientName);
 
 	Prescription getPresByAppId(long appId);
+
+	Prescription addTimeSlotDetails(Prescription presDetails, String morning, String noon, String evening, String night,
+			long appId, String excercisePlan, String dietPlan, String patientName, String doctorName);
 
 }

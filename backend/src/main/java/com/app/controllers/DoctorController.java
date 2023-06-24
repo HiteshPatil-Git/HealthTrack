@@ -44,7 +44,7 @@ public class DoctorController {
         return doctorService.saveDoctor(doctor);
     }
     
-    @GetMapping
+    @GetMapping("/")
 	public ResponseEntity<List<Doctor>> getAllDoctor()
 	{
     	System.out.println("doctor controller");

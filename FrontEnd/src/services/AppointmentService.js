@@ -30,7 +30,7 @@ class EpassService {
     }
     getPassByPassId(passv) {
         console.log('Epass service method called');
-        return axios.get(APPOINTMENT_API_BASE_URL+'/verification',passv).then(epassByPassId => {
+        return axios.post(APPOINTMENT_API_BASE_URL+'/verification',passv).then(epassByPassId => {
             console.log('response received');
 
                 if (epassByPassId != null) {

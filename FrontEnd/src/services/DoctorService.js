@@ -22,9 +22,10 @@ class DoctorService {
     }
 
     getAllDoctor() {
-        return axios.get(DOCTOR_API_BASE_URL).then(response => {
+        return axios.get(DOCTOR_API_BASE_URL+'/').then(response => {
             console.log('In Doctor service  all doctor call=>');
             if (response) {
+                console.log('response received');
                 localStorage.setItem("alldoctor", JSON.stringify(response.data));
             }
         return response;

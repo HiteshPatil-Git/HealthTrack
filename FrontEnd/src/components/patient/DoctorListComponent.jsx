@@ -20,7 +20,7 @@ class DoctorListComponent extends Component {
         this.state = {
             id: ''
         }
-        this.donation = this.donation.bind(this);
+
         this.bookEpass = this.bookEpass.bind(this);
         this.updateProfile = this.updateProfile.bind(this);
         this.logout = this.logout.bind(this);
@@ -34,20 +34,20 @@ class DoctorListComponent extends Component {
         localStorage.clear();
         window.location.href = "/";
     }
-    bookAppointment() {
+    bookEpass() {
         const doctorData = window.localStorage.getItem('selectedDoctor');
         const doctorresp = JSON.parse(doctorData);
-        console.log('doctor Name'+doctorresp.doctorName);
-        
+        console.log('temple Id' + doctorresp.doctorName);
+        console.log(this.state.id);
         TimeSlotService.getSlotByDoctorName(doctorresp.doctorName).then(
-            res => {     
-            console.log('response received ');
-            
-            this.props.history.push(`/all-slot`);
-               
-            }) 
+            res => {
+                console.log('response received ');
+
+                this.props.history.push(`/all-slot`);
+
+            })
     }
-    
+
 
 
     componentDidMount() {
@@ -55,45 +55,33 @@ class DoctorListComponent extends Component {
         const UserDate = JSON.parse(userData);
 
         let UserId = UserDate.userId;
-        console.log('User Id'+UserId)
+        console.log('User Id' + UserId)
         this.setState({ id: UserId })
-        
+
     }
     render() {
         const status = false;
-        const data = JSON.parse(localStorage.getItem('alldoctor'));
-        console.log(data);
-        const tableRows = data.map(
+        const ddata = JSON.parse(localStorage.getItem('alldoctor'));
+        console.log(ddata);
+        const tableRows = ddata.map(
             (element) => {
                 return (
-                    
-                     <tr>
+
+                    <tr>
                         <td>{element.hospitalName}</td>
                         <td>{element.doctorName}</td>
                         <td>{element.address}</td>
-                        <td>
-                            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                                
-                                <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Book
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" onClick={() => this.bookAppointment(localStorage.setItem("selectedDoctor", JSON.stringify(element)))} >Book</a></li>
-                                        
-                                        
-                                    </ul>
-                                </div>
-                            </div>
 
+                        <td>
+                            <button style={{ marginRight: '10px' }} onClick={() => this.bookEpass(localStorage.setItem("selectedDoctor", JSON.stringify(element)))} className="btn btn-primary">Book</button>
                         </td>
-                        
+
                     </tr>
 
                 )
             }
         )
-        
+
         return (
 
             <body className="container-fluid" style={{
@@ -123,31 +111,32 @@ class DoctorListComponent extends Component {
                     padding: '0',
                     margin: '0',
                 }} >
-                   
+
                     <div>
-                        
+
                         <div>
                             <Table hover>
                                 <thead>
                                     <tr>
+                                        
                                         <th>Hospital Name</th>
                                         <th>Doctor Name</th>
                                         <th>Address</th>
-                                        
+
                                         <th><p align="right" >
-                        <button style={{ marginRight: '10px' }} onClick={this.logout} className="btn btn-primary">Logout</button></p></th>
+                                            <button style={{ marginRight: '10px' }} onClick={this.logout} className="btn btn-primary">Logout</button></p></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {tableRows}
-                                    
+
                                 </tbody>
                             </Table>
 
                         </div>
 
                     </div>
-                    
+
                 </div>
 
             </body>

@@ -29,7 +29,7 @@ class AboutComponent extends React.Component {
 
           <h4>&nbsp;&nbsp;&nbsp; HealthTrack System is the website made to simplify the experience of tracking activities for healthier life.</h4>
           <h5></h5><br></br>
-          <div style={{ color: "seagreen" }}> <h5>&nbsp;&nbsp;&nbsp; &nbsp;Our prime objective is to simplification of healthtracking activities of patients such as appointment booking, prescription includinh diet plan and excercise </h5><h5>&nbsp;&nbsp;&nbsp;&nbsp;plan tracking as suggested by doctors. This system also provide assistance to doctors in
+          <div style={{ color: "seagreen" }}> <h5>&nbsp;&nbsp;&nbsp; &nbsp;Our prime objective is to simplification of healthtracking activities of patients such as appointment booking, prescription including diet plan and excercise </h5><h5>&nbsp;&nbsp;&nbsp;&nbsp;plan tracking as suggested by doctors. This system also provide assistance to doctors in
             hospital management. </h5>
           </div>
           <div style={{ color: "seagreen", marginTop:"20px" }}>

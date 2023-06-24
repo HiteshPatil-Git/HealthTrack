@@ -32,7 +32,7 @@ class BookAppointmentComponent extends Component {
         const doctorresp = JSON.parse(doctorData);
         console.log('In create timeslot userId =>' + response.userId);
         console.log('slot Id   =  ' + slotresp.slotId);
-
+        console.log('slot date   =  ' + slotresp.appDate);
         console.log('In BookEpass');
 
         return (
@@ -42,7 +42,7 @@ class BookAppointmentComponent extends Component {
                     
                     doctorName: doctorresp.doctorName,
                     patientName: response.patientName,
-                    appDate: slotresp.appDate,
+                    appDate: slotresp.slotDate,
                     slot: slotresp.slot,
                     available: slotresp.availableSlot,
                 
@@ -51,7 +51,7 @@ class BookAppointmentComponent extends Component {
 
 
                 validationSchema={Yup.object().shape({
-                    passDate: Yup.date().transform(parseDateString)
+                    appDate: Yup.date().transform(parseDateString)
                         .min(today, 'please select valid date'),
 
                     slot: Yup.string()
@@ -100,7 +100,7 @@ class BookAppointmentComponent extends Component {
                         padding: '0',
 
                     }}>
-                        <h3 className="text-center">Book Darshan Slot</h3>
+                        <h3 className="text-center">Book Appointment Slot</h3>
 
                         <p align="right" >
                             <button style={{ marginRight: '20px' }} onClick={this.logout} className="btn btn-primary">Logout</button></p>
@@ -116,9 +116,9 @@ class BookAppointmentComponent extends Component {
                             <ErrorMessage name="patientName" component="div" className="invalid-feedback" />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="passDate">Pass Date</label>
-                            <Field name="passDate" type="date" className={'form-control' + (errors.passDate && touched.passDate ? ' is-invalid' : '')} readOnly />
-                            <ErrorMessage name="passDate" component="div" className="invalid-feedback" />
+                            <label htmlFor="appDate">App Date</label>
+                            <Field name="appDate" type="date" className={'form-control' + (errors.appDate && touched.appDate ? ' is-invalid' : '')} readOnly />
+                            <ErrorMessage name="appDate" component="div" className="invalid-feedback" />
                         </div>
 
                         <div className="form-group">

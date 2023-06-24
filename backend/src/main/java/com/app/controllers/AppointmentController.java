@@ -72,7 +72,7 @@ public class AppointmentController {
     @PostMapping("/verification")
 	public ResponseEntity<?> loginEpass(@RequestBody Appointment passv)
 	{
-		
+    	System.out.println("in Appoint. controller verification");
 		
 		Appointment authenticateEpass = appointmentService.authenticateEpass(passv);
 		

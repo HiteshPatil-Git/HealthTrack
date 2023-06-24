@@ -18,7 +18,7 @@ class EpassComponent extends Component {
     render() {
         const epassData = window.localStorage.getItem('epassByPassId');
         const epassresponse = JSON.parse(epassData);
-        console.log('In epass'+epassresponse.peoples);
+        
 
         return (
             <Formik
@@ -51,7 +51,7 @@ class EpassComponent extends Component {
 
                 onSubmit={fields => {
                     console.log('Button Clicked');
-                    this.props.history.push('/devotee-verification');
+                    this.props.history.push('/patient-verification');
                   
                 }}
                 render={({ errors, status, touched }) => (
@@ -64,7 +64,7 @@ class EpassComponent extends Component {
                         padding: '0',
 
                     }}>
-                        <h4 className="text-center">Epass Details</h4>
+                        <h4 className="text-center">Appointment Details</h4>
 
                         
                             <div className="form-group">
@@ -98,7 +98,8 @@ class EpassComponent extends Component {
                         </div>
 
                         <div className="form-group" style={{ marginRight: '20px', marginTop: '12px' }}>
-                         <a style={{ marginRight: '20px' }}  class="btn btn-primary" href="/devotee-verification" role="button">Confirm</a>
+                         <a style={{ marginRight: '20px' }}  class="btn btn-primary" href="/patient-verification" role="button">Confirm</a>
+                         <a style={{ marginRight: '20px' }}  class="btn btn-primary" href="/add-prescription" role="button">Prescribe</a>
                          <a class="btn btn-primary" href="/doctor-scope" role="button">Home</a>
                         </div>
                         
