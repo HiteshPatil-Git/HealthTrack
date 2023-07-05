@@ -18,7 +18,8 @@ public interface PrescriptionService {
 
 	Prescription getPresByAppId(long appId);
 
-	Prescription addTimeSlotDetails(Prescription presDetails, String morning, String noon, String evening, String night,
-			long appId, String excercisePlan, String dietPlan, String patientName, String doctorName);
+	Prescription addTimeSlotDetails(Prescription presDetails);
+
+	Prescription updatePrescription(Prescription presDetails);
 
 }

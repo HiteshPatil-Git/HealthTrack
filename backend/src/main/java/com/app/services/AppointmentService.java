@@ -21,6 +21,8 @@ public interface AppointmentService {
 
 	Appointment authenticateEpass(Appointment passv);
 
+	List<Appointment> getAllByUserId(int userId);
+
 	
 
 	

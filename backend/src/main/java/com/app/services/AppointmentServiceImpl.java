@@ -38,6 +38,7 @@ public class AppointmentServiceImpl implements AppointmentService{
 			a1.setSlot(passDetails.getSlot());
 			a1.setPatientName(passDetails.getPatientName());
 			a1.setDoctorName(selectedSlot.getDoctorName());
+			a1.setUserId(passDetails.getUserId());
 			
 			
 			Appointment bookedAppointment = appointmentRepository.save(a1);
@@ -90,6 +91,12 @@ public class AppointmentServiceImpl implements AppointmentService{
 		
 		System.out.println(appId +" --> "+doctorName);
 		return appointmentRepository.findByAppIdAndDoctorName(appId, doctorName);
+	}
+
+	@Override
+	public List<Appointment> getAllByUserId(int userId) {
+		List<Appointment> tList = appointmentRepository.findByUserId( userId);
+		return tList;
 	}
 
 	

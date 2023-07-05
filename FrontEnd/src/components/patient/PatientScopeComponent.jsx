@@ -13,6 +13,7 @@ import DoctorService from '../../services/DoctorService';
 import EpassService from '../../services/AppointmentService';
 import TimeSlotService from '../../services/TimeSlotService';
 import HeaderComponent from '../HeaderComponent';
+import AppointmentService from '../../services/AppointmentService';
 
 class PatientScopeComponent extends Component {
     
@@ -46,7 +47,7 @@ class PatientScopeComponent extends Component {
 
     bookings(userId){
         console.log('button clicked');
-        EpassService.getPassByUserId(userId).then(res=>{
+        AppointmentService.getPassByUserId(userId).then(res=>{
            this.props.history.push(`/all-bookings`);
         })       
     }

@@ -42,7 +42,8 @@ public class AppointmentController {
     
     @PostMapping("/create")
 	public ResponseEntity<?> addNewAppointment(@RequestBody Appointment passDetails,
-			@RequestParam(name = "slotId") long slotId
+			@RequestParam(name = "slotId") long slotId,
+			@RequestParam(name = "userId") int userId
 			){
 		
 		try {
@@ -96,5 +97,12 @@ public class AppointmentController {
     	return appointmentService.getAllByPatientName(patientName);
 		
 	}
+    
+    @GetMapping("/userId")
+   	public List<Appointment> getAppByUserId(@RequestParam(name = "userId") int userId) {
+       	
+       	return appointmentService.getAllByUserId(userId);
+   		
+   	}
 
 }

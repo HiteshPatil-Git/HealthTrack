@@ -10,6 +10,7 @@ import CreateDoctorComponent from './components/profile/CreateDoctorComponent';
 import PatientScopeComponent from './components/patient/PatientScopeComponent';
 import DoctorScopeComponent from './components/Doctor/DoctorScopeComponent';
 import CreatePrescriptionComponent from './components/Doctor/CreatePrescriptionComponent';
+import UpdatePrescriptionComponent from './components/Doctor/UpdatePrescriptionComponent';
 import UpdateComponent from './components/profile/UpdateComponent';
 
 
@@ -49,10 +50,11 @@ function App() {
               <Route path="/add-patient" component={CreatePatientComponent}></Route>
               <Route path="/add-doctor" component={CreateDoctorComponent}></Route>
               <Route path="/add-prescription" component={CreatePrescriptionComponent}></Route>
+              <Route path="/update-prescription" component={UpdatePrescriptionComponent}></Route>
               <Route path="/patient-scope" component={PatientScopeComponent}></Route>
               <Route path="/doctor-scope" component={DoctorScopeComponent}></Route>
               <Route path="/update" component={UpdateComponent}></Route>
-
+              
               <Route path="/create-time-slot" component={CreateTimeSlotComponent}></Route>
               <Route path="/book-Appointment" component={BookAppointmentComponent}></Route>
               

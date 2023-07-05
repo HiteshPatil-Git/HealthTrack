@@ -26,12 +26,8 @@ class AllBookingsComponent extends Component {
     window.location.href = "/";
   }
 
-  book() {
-    const slotData = window.localStorage.getItem('selectedSlot');
-    const slotresp = JSON.parse(slotData);
-    console.log('slot Date ==> ' + slotresp.slotDate);
-    console.log('slot ID ==> ' + slotresp.slotId);
-    console.log('slot available ==> ' + slotresp.availableSlot);
+  prescription(appId) {
+    
 
     this.props.history.push(`/book-Epass`);
   }
@@ -41,10 +37,10 @@ class AllBookingsComponent extends Component {
 
     const epassData = window.localStorage.getItem('epassByUserId');
     const data = JSON.parse(epassData);
-    
+
     const userData = window.localStorage.getItem('user');
     const response = JSON.parse(userData);
-    
+
 
     const tableRows = data.map(
       (element) => {
@@ -52,11 +48,14 @@ class AllBookingsComponent extends Component {
         return (
 
           <tr>
-            <td>{element.templeName}</td>
-            <td>{element.passId}</td>
-            <td>{element.passDate}</td>
+            <td>{element.doctorName}</td>
+            <td>{element.appId}</td>
+            <td>{element.appDate}</td>
             <td>{element.slot}</td>
-            <td>{element.peoples}</td>
+            <td>
+              <button style={{ marginRight: '10px' }} onClick={() => this.prescription(element.appId)} className="btn btn-primary">Prescription</button>
+            </td>
+
           </tr>
         )
 
@@ -73,11 +72,11 @@ class AllBookingsComponent extends Component {
         <Table hover>
           <thead>
             <tr>
-            <th>Temple Name</th>
-              <th>Pass ID</th>
+              <th>Doctor Name</th>
+              <th>Appointment ID</th>
               <th>Date</th>
               <th>Slot Timing</th>
-              <th>Peoples</th>
+
             </tr>
           </thead>
           <tbody>

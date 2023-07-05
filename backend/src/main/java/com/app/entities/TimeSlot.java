@@ -58,6 +58,7 @@ public class TimeSlot {
 	@JoinColumn(name = "temple_id")
 	private Temple temple;*/
 	private String doctorName;
+	
 
 	
 }

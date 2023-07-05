@@ -50,6 +50,8 @@ public class Appointment {
     private String patientName;
     
     private String doctorName;
+    
+    private int userId;
 
     /*@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "patient_id")

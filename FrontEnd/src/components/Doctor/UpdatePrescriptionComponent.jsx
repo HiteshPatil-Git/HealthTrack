@@ -13,16 +13,6 @@ import Ram3 from '../../images/Ram3.jpg'
 import PrescriptionService from '../../services/PrescriptionService';
 
 
-import { parse, isDate } from "date-fns";
-
-const today = new Date();
-function parseDateString(value, originalValue) {
-    const parsedDate = isDate(originalValue)
-        ? originalValue
-        : parse(originalValue, "yyyy-MM-dd", new Date());
-
-    return parsedDate;
-}
 
 const required = value => {
     if (!value) {
@@ -33,26 +23,27 @@ const required = value => {
         );
     }
 };
-class CreatePrescriptionComponent extends Component {
+class UpdatePrescriptionComponent extends Component {
 
     constructor(props) {
-        const epassData = window.localStorage.getItem('epassByPassId');
-        const epassresponse = JSON.parse(epassData);
+        const presData = window.localStorage.getItem('presByAppId');
+        const presresponse = JSON.parse(presData);
+
         super(props)
         this.state = {
             pres: [],
             dose: '',
-            morning: "=>",
-            noon: "=>",
-            evening: "=>",
-            night: "=>",
-            appId: epassresponse.appId,
-            patientName: epassresponse.patientName,
-            doctorName: epassresponse.doctorName,
-            preDate: epassresponse.appDate,
-            nextVisitDate: '',
-            excercisePlan: '',
-            dietPlan: '',
+            morning: presresponse.morning,
+            noon: presresponse.noon,
+            evening: presresponse.evening,
+            night: presresponse.night,
+            appId: presresponse.appId,
+            patientName: presresponse.patientName,
+            doctorName: presresponse.doctorName,
+            preDate: presresponse.preDate,
+            nextVisitDate: presresponse.nextVisitDate,
+            excercisePlan: presresponse.excercisePlan,
+            dietPlan: presresponse.dietPlan,
             loading: false,
             message: ""
 
@@ -67,7 +58,6 @@ class CreatePrescriptionComponent extends Component {
         this.onChangeDose = this.onChangeDose.bind(this);
         this.onChangeExcercisePlan = this.onChangeExcercisePlan.bind(this);
         this.onChangeDietPlan = this.onChangeDietPlan.bind(this);
-        this.onChangeNextVisitDate = this.onChangeNextVisitDate.bind(this);
 
         this.morning = this.morning.bind(this);
         this.noon = this.noon.bind(this);
@@ -133,12 +123,6 @@ class CreatePrescriptionComponent extends Component {
             dietPlan: e.target.value
         });
     }
-    onChangeNextVisitDate(e) {
-        const nextVisitDate = parseDateString(e.target.value);
-        this.setState({
-            nextVisitDate: nextVisitDate
-        });
-    }
 
     handleConfirm(e) {
         console.log("Button clicked");
@@ -154,12 +138,12 @@ class CreatePrescriptionComponent extends Component {
         const pres = {
             morning: this.state.morning, noon: this.state.noon, evening: this.state.evening, night: this.state.night,
             appId: this.state.appId, patientName: this.state.patientName, doctorName: this.state.doctorName,
-            preDate: this.state.preDate, nextVisitDate: parseDateString(this.state.nextVisitDate),
+            preDate: this.state.preDate, nextVisitDate: this.state.nextVisitDate,
             excercisePlan: this.state.excercisePlan, dietPlan: this.state.dietPlan
         }
         console.log('pres =>');
 
-        PrescriptionService.createPrescription(pres).then(
+        PrescriptionService.updatePrescription(pres).then(
             res => {
                 if (res === null) {
                     
@@ -356,4 +340,4 @@ class CreatePrescriptionComponent extends Component {
 
 
 
-export default CreatePrescriptionComponent;
+export default UpdatePrescriptionComponent;

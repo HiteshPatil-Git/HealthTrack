@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,7 @@ import com.app.entities.Prescription;
 import com.app.entities.TimeSlot;
 import com.app.services.PrescriptionService;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/prescriptions")
 public class PrescriptionController {
@@ -33,30 +35,30 @@ public class PrescriptionController {
     }*/
     
     @PostMapping("/create")
-	public ResponseEntity<?> addNewTimeSlot(@RequestBody Prescription presDetails,
-			@RequestParam(name = "morning") String morning,
-			@RequestParam(name = "evening") String evening,
-			@RequestParam(name = "noon") String noon,
-			@RequestParam(name = "night") String night,
-			@RequestParam(name = "appId") long appId,
-			@RequestParam(name = "excercisePlan") String excercisePlan, 
-			
-			@RequestParam(name = "dietPlan") String dietPlan, 
-			
-			@RequestParam(name = "patientName") String patientName,
-			@RequestParam(name = "doctorName") String doctorName){
+	public ResponseEntity<?> addNewPrescription(@RequestBody Prescription presDetails){
 	
-		System.out.println("in add new user");
+		System.out.println("in add new prescription");
 		try {	
-			
-			System.out.println(doctorName);
 						
-			return new ResponseEntity<>(prescriptionService.addTimeSlotDetails(presDetails, morning, noon,evening, night,appId, excercisePlan,dietPlan,patientName, doctorName),HttpStatus.CREATED);
+			return new ResponseEntity<>(prescriptionService.addTimeSlotDetails(presDetails),HttpStatus.CREATED);
 			
 		}catch (RuntimeException e) {
 			return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);	
 		}
 	}
+    
+    @PostMapping("/update")
+   	public ResponseEntity<?> updatePrescriptionDetails(@RequestBody Prescription presDetails){
+   	
+   		System.out.println("in add new prescription");
+   		try {	
+   						
+   			return new ResponseEntity<>(prescriptionService.updatePrescription(presDetails),HttpStatus.CREATED);
+   			
+   		}catch (RuntimeException e) {
+   			return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);	
+   		}
+   	}
     
     
     @GetMapping("/{presId}")
@@ -86,12 +88,15 @@ public class PrescriptionController {
 		
 	}
     
-    @GetMapping("/app/{appId}")
-	public Prescription getPresByAppointmentId(@PathVariable long appId) {
+    @GetMapping("/appId")
+	public Prescription getPresByAppointmentId(@RequestParam(name = "appId") long appId) {
+    	System.out.println(appId);
     	
     	return prescriptionService.getPresByAppId(appId);
 		
 	}
+    
+    
     
 
     

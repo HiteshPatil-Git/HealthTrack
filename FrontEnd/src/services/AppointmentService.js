@@ -8,11 +8,12 @@ class EpassService {
         return axios.get(APPOINTMENT_API_BASE_URL);
     }
 
-    createAppointment(pass, slotId) {
+    createAppointment(pass, slotId, userId) {
         return axios.post(APPOINTMENT_API_BASE_URL + '/create', pass,
             {
                 params: {
                     slotId: slotId,
+                    userId: userId,
                 }
             })
             .then(response => {

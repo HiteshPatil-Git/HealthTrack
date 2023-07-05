@@ -10,27 +10,23 @@ class PrescriptionService {
 
     createPrescription(pres)  {
         console.log('in pres service create');
-        return axios.post(PRESCRIPTION_API_BASE_URL + '/create',pres,
-            {
-                params: {
-                    excercisePlan: pres.excercisePlan,
-                    dietPlan: pres.dietPlan,
-                    morning: pres.morning,
-                    noon: pres.noon,
-                    evening: pres.evening,
-                    night: pres.night,
-                    
-                    doctorName: pres.doctorName,
-                    patientName: pres.patientName,
-                    preDate: pres.preDate,
-                    nextVisitDate: pres.nextVisitDate,
-                    appId: pres.appId,
-                }
-            })
+        return axios.post(PRESCRIPTION_API_BASE_URL + '/create', pres )
             .then(response => {
 
                 if (response) {
-                    localStorage.setItem("timeslot", JSON.stringify(response.data));
+                    localStorage.setItem("prescription", JSON.stringify(response.data));
+                }
+                return response;
+            });
+    }
+
+    createPrescription(pres)  {
+        console.log('in pres service update');
+        return axios.post(PRESCRIPTION_API_BASE_URL + '/update', pres )
+            .then(response => {
+
+                if (response) {
+                    localStorage.setItem("prescription", JSON.stringify(response.data));
                 }
                 return response;
             });
@@ -55,18 +51,21 @@ class PrescriptionService {
             });
     }
 
-    getPassByUserId(userId) {
-        return axios.get(PRESCRIPTION_API_BASE_URL+'/userId', {
+    getPresByAppId(appId) {
+        
+        return axios.get(PRESCRIPTION_API_BASE_URL+'/appId', {
             params: {
-                userId: userId,
+                appId: appId,
             }
         })
-            .then(epassByUserId => {
+            .then(presByAppId => {
+                
 
-                if (epassByUserId) {
-                    localStorage.setItem("epassByUserId", JSON.stringify(epassByUserId.data));
+                if (presByAppId) {
+                    localStorage.setItem("presByAppId", JSON.stringify(presByAppId.data));
+
                 }
-                return epassByUserId;
+                return presByAppId;
             });
 
     }

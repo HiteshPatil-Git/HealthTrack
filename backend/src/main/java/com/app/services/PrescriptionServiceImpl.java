@@ -20,6 +20,7 @@ public class PrescriptionServiceImpl implements PrescriptionService {
 		
 		return prescriptionRepository.save(pres);
 	}
+	
 
 	@Override
 	public Prescription getDetailsById(long presId) {
@@ -48,15 +49,18 @@ public class PrescriptionServiceImpl implements PrescriptionService {
 	@Override
 	public Prescription getPresByAppId(long appId) {
 		
-		return prescriptionRepository.findByAppId(appId);
+		Prescription pre = prescriptionRepository.findByAppId(appId);
+		
+		if (pre != null)
+			return pre;
+		return null;
 	}
 
 	@Override
-	public Prescription addTimeSlotDetails(Prescription presDetails, String morning, String noon, String evening,
-			String night, long appId, String excercisePlan, String dietPlan, String patientName, String doctorName) {
+	public Prescription addTimeSlotDetails(Prescription presDetails) {
 
 		Prescription pr = new Prescription();
-		pr.setAppId(appId);
+		/*pr.setAppId(appId);
 		pr.setDietPlan(dietPlan);
 		pr.setExcercisePlan(excercisePlan);
 		pr.setMorning(morning);
@@ -66,11 +70,18 @@ public class PrescriptionServiceImpl implements PrescriptionService {
 		pr.setDoctorName(doctorName);
 		pr.setPatientName(patientName);
 		pr.setPreDate(presDetails.getPreDate());
-		pr.setNextVisitDate(presDetails.getNextVisitDate());
+		pr.setNextVisitDate(presDetails.getNextVisitDate());*/
 		
 		
 		
-		return prescriptionRepository.save(pr);
+		return prescriptionRepository.save(presDetails);
+	}
+
+
+	@Override
+	public Prescription updatePrescription(Prescription presDetails) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

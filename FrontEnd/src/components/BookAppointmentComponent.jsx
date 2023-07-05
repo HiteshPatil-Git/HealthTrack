@@ -39,7 +39,7 @@ class BookAppointmentComponent extends Component {
 
             <Formik
                 initialValues={{
-                    
+                    userId : response.userId,
                     doctorName: doctorresp.doctorName,
                     patientName: response.patientName,
                     appDate: slotresp.slotDate,
@@ -62,7 +62,7 @@ class BookAppointmentComponent extends Component {
                 })}
 
                 onSubmit={userData => {
-                    console.log('button clicked')
+                    console.log('button clicked'+response.userId)
                     emailjs.sendForm('service_flv5uiq', 'template_u56edpm', '.abc', 'user_rwUGjMuz6UWCDzpwVVGPe')
                         .then((result) => {
                             console.log(result.text);
@@ -70,7 +70,7 @@ class BookAppointmentComponent extends Component {
                             console.log(error.text);
                         });
                     alert('Booking successfull :-)\n\n' + JSON.stringify(userData, null, 4))
-                    AppointmentService.createAppointment(userData, slotresp.slotId).then(res => {
+                    AppointmentService.createAppointment(userData, slotresp.slotId, response.userId).then(res => {
 
                         if (res === null) {
 
@@ -109,6 +109,12 @@ class BookAppointmentComponent extends Component {
                             <label htmlFor="doctorName">Doctor Name</label>
                             <Field name="doctorName" type="text" className={'form-control' + (errors.doctorName && touched.doctorName ? ' is-invalid' : '')} readOnly />
                             <ErrorMessage name="doctorName" component="div" className="invalid-feedback" />
+                        </div>
+                        
+                        <div className="form-group">
+                            <label htmlFor="userId">User Id</label>
+                            <Field name="userId" type="text" className={'form-control' + (errors.userId && touched.userId ? ' is-invalid' : '')} readOnly />
+                            <ErrorMessage name="userId" component="div" className="invalid-feedback" />
                         </div>
                         <div className="form-group">
                             <label htmlFor="patientName">Patient Name</label>
